@@ -1,0 +1,23 @@
+int [][] bitmap1 = { 
+                     {0,0,0,1,0,0},
+                     {0,1,0,0,0,},
+                     {0,1,1,0},
+                     {0,1,0,1,0,0},
+                     {0,1,0,0},
+                     {0,1,0,0,0,1}
+                   };
+                   
+int [][] bitmap2 = new int[bitmap1.length][];
+　　　　　　　　//1次元目だけbitmap1と同じだけ確保
+
+/* 2次元目を確保する部分 */
+for(int i=0; i<bitmap1.length; i++){
+  bitmap2[i] = new int[bitmap1[i].length];
+}
+
+/* コピーする部分 */
+for(int y=0; y<bitmap1.length; y++){  //配列の縦の長さ
+  for(int x=0; x<bitmap1[y].length; x++){  //yの所での配列の横の長さ
+      bitmap2[y][x] = bitmap1[y][x];
+  }
+}
