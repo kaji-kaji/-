@@ -6,7 +6,7 @@ public class Main {
         int n = sc.nextInt();
         int sum = 0;
         while(n > 0){
-            sum += n / 5;
+            sum += n / 5;  // 2*5つまり10がいくつできるかを考えることで末尾の０の数がわかる
             n /= 5;
         }
         System.out.println(sum);
