@@ -1,0 +1,58 @@
+import java.util.*;　　　　　　　　　　　　　　　//初見自分
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int sum = 0;
+        int sum_p = 1;
+        
+        System.out.println(0);
+        for(int i = 0; i < n-1; i++){
+            System.out.println(sum_p + sum);
+            sum = sum_p + sum;
+            sum_p = sum - sum_p;
+        }
+    }
+}
+
+import java.util.*;
+
+public class Main {　　　　　　　　　　　　　　　//Paizaの解答
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+
+        int[] fibo = new int[n];
+        fibo[0] = 0;
+        fibo[1] = 1;
+        for (int i = 2; i < n; i++) {
+            fibo[i] = fibo[i - 2] + fibo[i - 1];
+        }
+
+        for (int x : fibo) {
+            System.out.println(x);
+        }
+        sc.close();
+    }
+}
+
+	import java.util.Scanner;
+
+public class Main {
+  public static void main(String args[]) {
+    Scanner sc = new Scanner(System.in);
+    long n = sc.nextLong();
+    long d, e, f;
+    d = -1;
+    e = 1;
+    f = 0;
+    for (int i = 0; i < n; i++) {
+      f = d + e;
+      d = e;
+      e = f;
+      System.out.print(f + " ");
+    }
+  }
+}
