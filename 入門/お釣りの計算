@@ -1,0 +1,21 @@
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int[] coins = { 500, 100, 50, 10, 5, 1 }; //大きな小銭がなくなるまで払い続ける
+
+        int answer = 0;
+        for (int i = 0; i < coins.length; i++) {
+            while (n >= coins[i]) {
+                n -= coins[i];
+                answer++;
+            }
+        }
+
+        System.out.println(answer);
+    }
+}
