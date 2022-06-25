@@ -1,0 +1,19 @@
+import java.util.Comparator;
+import java.util.Map;
+import java.util.TreeMap;
+ 
+public class CollCompara {
+  public static void main(String[] args) {
+    Map<String, String> m = new TreeMap<String, String>(new Comparator<String>() {
+      @Override
+      public int compare(String o1, String o2) {
+        return o2.length() - o1.length();
+      }
+    });
+    m.put("PC", "personal computer");
+    m.put("A/C", "air conditioner");
+    m.put("remote", "remote control");
+    System.out.println(m);
+    // 結果：{remote=remote control, A/C=air conditioner, PC=personal computer}
+  }
+}
