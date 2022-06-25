@@ -1,0 +1,40 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
+
+public class Main {
+
+  public static void main(String[] args) {
+
+    // HashMap を構築
+    // 順番は保証されない
+    Map<String, String> hashMap = new HashMap<String, String>();
+    hashMap.put("0001", "Alice");
+    hashMap.put("0002", "Bob");
+    hashMap.put("0003", "Carol");
+    hashMap.put("0004", "Dave");
+    hashMap.put("0005", "Ellen");
+    System.out.println("HashMap");
+    for (String key : hashMap.keySet()) {
+      System.out.println(key + ": " + hashMap.get(key));
+    }
+    System.out.println();
+
+    // TreeMap を構築
+    // キーの昇順に自動でソートしてくれる
+    Map<String, String> treeMap = new TreeMap<String, String>(hashMap);
+    System.out.println("TreeMap");
+    for (String key : treeMap.keySet()) {
+      System.out.println(key + ": " + treeMap.get(key));
+    }
+    System.out.println();
+
+    // TreeMap に値を追加するとキーの昇順に自動でソートしてくれる
+    treeMap.put("0000", "XXXXX");
+    System.out.println("TreeMap");
+    for (String key : treeMap.keySet()) {
+      System.out.println(key + ": " + treeMap.get(key));
+    }
+    System.out.println();
+  }
+}
