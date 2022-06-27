@@ -1,0 +1,24 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        String str = "1838d8164728";
+        char[] c = str.toCharArray();
+        int sum = 0;
+        System.out.println("元の文字列:" + str);
+         
+        for (int i = 0; i < str.length(); i++) {
+            if (Character.isDigit(c[i])) {
+                continue;
+            }else{
+                sum++;
+                break;
+            }
+        }
+        if(sum > 0){
+            System.out.print("no");
+        }else{
+            System.out.print("yes");
+        }
+    }
+}
