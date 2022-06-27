@@ -1,0 +1,21 @@
+import java.util.Set;
+import java.util.HashSet;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Set<String> animals = new HashSet<String>();
+                              TreeSet　　　　// 配列のソートあり
+                              LinkedHashSet　//配列のソートなしそのまま
+		animals.add("猿");
+		animals.add("熊");
+		animals.add("ゴリラ");
+
+		for(String s : animals){
+
+			System.out.println(s + "　"); // 熊　ゴリラ　猿
+		}
+
+	}
+
+}
