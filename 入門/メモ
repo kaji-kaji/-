@@ -1,2 +1,47 @@
 TreeSet
 https://paiza.jp/works/mondai/reviews/show/bf1560d91264d18834443c231b9f7946
+
+-------------------------------------------------------
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int p_1 = sc.nextInt();
+        int p_2 = sc.nextInt();
+        int p_3 = sc.nextInt();
+        int p_4 = sc.nextInt();
+        
+        Map<Integer, Integer> hm = new HashMap<Integer, Integer>();
+        
+        for(int i = 1; i <= 4; i++){
+            hm.put(i, sc.nextInt());
+        }
+        int a = 0;
+        int b = 0;
+        
+        if(hm.get(p_1) < hm.get(p_2)){
+            hm.put(5, hm.get(p_2));
+            a = p_1;
+        }else{
+            hm.put(5, hm.get(p_1));
+            a = p_2;
+        }
+        
+        if(hm.get(p_3) < hm.get(p_4)){
+            hm.put(6, hm.get(p_4));
+            b = p_3;
+        }else{
+            hm.put(6, hm.get(p_3));
+            b = p_4;
+        }
+        
+        if(hm.get(6) < hm.get(5)){
+            System.out.println(b);
+            System.out.println(a);
+        }else{
+            System.out.println(a);
+            System.out.println(b);
+        }
+    }
+}
