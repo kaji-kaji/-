@@ -1,0 +1,25 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int h = sc.nextInt();
+        int[] p = {0, 1, 1};
+        int[] e = {0, 1, 1};
+        int dmg = 2;
+        int cnt = 2;
+        
+        while(dmg < h){
+            p[0] = p[1];
+            p[1] = p[2];
+            e[0] = e[1];
+            e[1] = e[2];
+            e[2] = p[0] + p[1] * 2;
+            p[2] = e[0] + e[1];
+            dmg += e[2];
+            
+            cnt++;
+        }
+        System.out.println(cnt);
+    }
+}
