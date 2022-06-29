@@ -8,7 +8,7 @@ public class Main {
 
     // HashMap を構築
     // 順番は保証されない
-    Map<String, String> hashMap = new HashMap<String, String>();
+    Map<String, String> hm = new HashMap<String, String>();
     hashMap.put("0001", "Alice");
     hashMap.put("0002", "Bob");
     hashMap.put("0003", "Carol");
