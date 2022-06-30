@@ -9,7 +9,7 @@ public class Main {
         for(int i = 0; i < n; i++){
             k[i] = sc.next();
         }
-        Map<String, Integer> treeMap = new TreeMap<String, Integer>();
+        TreeMap<String, Integer> treeMap = new TreeMap<String, Integer>();
 
         for (int i = 0; i < n; i++) {
             if (treeMap.containsKey(k[i])) {
@@ -20,7 +20,7 @@ public class Main {
         }
         
         for (String key : treeMap.keySet()) {
-        System.out.println(key + " " + treeMap.get(key));
+        System.out.println(key + " " + treeMap.get(key));　//マップとキーを表示する
         }
     }
 }
