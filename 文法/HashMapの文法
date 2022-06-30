@@ -25,3 +25,14 @@ public class Kadai_1 {
         }
     }
 }
+
+clear()	  すべての要素を削除
+containsKey(Object key)	キーkeyがマップに含まれているかを判定
+containsValue(Object value)	値valueがマップに含まれているかを判定
+get(Object key)	キーkeyに対応する値を取得
+isEmpty()	マップが空かを判定
+keySet()	すべてのキーを取得
+put(K key, V value)	指定されたキー／値の組み合わせを追加
+remove(Object key)	指定のキーを削除
+int size()	マップの要素数を取得
+Collection<V> values()	すべての値を取得
