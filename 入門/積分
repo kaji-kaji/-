@@ -1,0 +1,22 @@
+package arugo;
+
+public class Ex {
+
+	public static void main(String[] args) {
+		int num = 10000000,sum =0;
+		double x,y;
+		for (int i = 0; i < num; ++i) {
+			x = Math.random() * 2 + 2;
+			y = Math.random() * 2;
+			if(y < (1/Math.log(x))) {　//y＝1/Math.log（ｘ）だから
+				sum++;
+			}
+		}
+		
+		System.out.println("分割：" + num);
+		System.out.println("近似：" + sum * 4 / (double)num); //かける４はただの面積
+
+
+	}
+
+}
