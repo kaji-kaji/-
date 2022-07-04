@@ -1,5 +1,5 @@
 import java.util.Set;
-import java.util.HashSet;
+import java.util.HashSet;　　//重複したデータを持つことがないのであればHashSetを使った方が良い
 
 public class Main {
 
