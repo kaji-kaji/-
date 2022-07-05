@@ -6,12 +6,14 @@ public class Main {
         int n = sc.nextInt();
         int k = sc.nextInt();
         int q = sc.nextInt();
-        ArrayList<Integer> al = new ArrayList<>();
-        for(int i = 0; i < n; i++){
+        ArrayList<Integer> al = new ArrayList<>();                  //ArrayList 特定の要素にアクセスするスピードが早い
+                                                                                要素を追加するスピードが遅い
+        for(int i = 0; i < n; i++){                                     配列内の要素に対して挿入／削除の操作があまり必要ない場合
             int c = sc.nextInt();
-            al.add(c);
-        }
-        al.add(k, q);
+            al.add(c);                   
+        }                                                          //LinkedList  要素を追加したり削除するスピードが早い
+                                                                                 特定の要素にアクセスするスピードが遅い
+        al.add(k, q);                                                      配列内の要素に対して挿入／削除の操作を頻繁に行う場合
         //System.out.println(al); // [17, 57, 57, 83]
         
         for(int i = 0; i < n+1; i++){
