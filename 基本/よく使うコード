@@ -11,18 +11,4 @@ public class Main {
     }
 }
 
-
-import java.util.*;
-
-public class Main {
-    public static void main(String[] args) throws Exception {
-        int n = sc.nextInt(); //ｎ歳までの伸長
-        int m = sc.nextInt(); // この時の伸長が知りたい
-        int x = sc.nextInt(); //xはその年から身長が伸びた
-        int t = sc.nextInt(); // n歳の伸長
-        int d = sc.nextInt(); //何センチ伸びたか
-        
-        if(n >)
-    }
-}
 なぜ送る法と受けと売る法のプロトコルが違うのか？
