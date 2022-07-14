@@ -1,0 +1,2 @@
+char myChar = '5';
+int myInt = Character.getNumericValue(myChar);    
