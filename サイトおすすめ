@@ -32,26 +32,3 @@ public class Main {
     }
 }
 
-
-
-int num = 100;
-float[] x = new float[num];
-float[] y = new float[num];
-float[] ringSize = new float[num];
-int clickNum = 0;
-
-void setup() {
- size(600, 600);
- frameRate(60);
- noFill();
- smooth();
- stroke(0, 0, 255);
- for(int i = 0; i < num; i++){
-   x[i] = 0;
-   y[i] = 0;
-   
-
-for(int i = 0; i < 100; i++){
-  rect(random (1) * width , random(1) * height, random(50)+ 10 , random(50) + 10);
-}
-}
