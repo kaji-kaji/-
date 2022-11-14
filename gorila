@@ -1,0 +1,208 @@
+#include "DxLib.h"
+int player[2], hasi[2], enemy, joo, ta_ru[4];//真野のene
+int px = 1, py = 18; //マリオの位置
+int ex = 2, ey = 1;	//gorilaの位置
+int joox = 5, jooy = 1;
+
+int status = 0;		//ゲームの状態　０：プレイ，１：ＧａｍｅＯｖｅｒ，２：ＧａｍｅＣｌｅａｒ
+int map[20][25] = {
+	{ 2, 2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2, 2 },
+
+	{ 2, 2,2,2,2,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 2 },
+	{ 2, 2,2,2,2,2,2,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2, 2 },
+	{ 0, 0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 2 },
+	{ 2, 2,2,2,2,2,2,2,2,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2, 2 },
+	{ 2, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 2 }, //1がはしご
+	{ 2, 2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2, 2 }, //2が黒
+	{ 2, 2,2,2,2,2,2,2,2,2,0,2,2,2,2,2,2,2,2,2,2,2,2,2, 2 }, //0が足場
+	{ 2, 2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2, 2 },
+	{ 2, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 2 },
+	{ 2, 2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2, 2 },
+	{ 2, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 2 },
+	{ 2, 2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2, 2 },
+	{ 2, 2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2, 2 },
+	{ 2, 2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2, 2 },
+	{ 2, 2,2,2,0,2,0,0,0,0,2,0,0,0,0,0,2,0,0,0,0,0,0,2, 2 },
+	{ 2, 2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2, 2 },
+	{ 2, 2,2,0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2, 2 },
+	{ 2, 2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2, 2 },
+
+	{ 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0 },
+};
+int taru, tx = 9, ty = 18; //真野のenemyは樽 tx,ty は真野のex,ey
+int t_speed = 1;
+//boolean jflag = FALSE;
+int time = 0;
+int taiku_y;
+int heart1, heart2, heart3, hp = 3;
+int hx1 = 0, hy1 = 0, hx2 = 1, hy2 = 0, hx3 = 2, hy3 = 0;
+
+int ta_ru_index = 0;
+int p_dir = 0;
+
+void Gazo(void) {	//画像取り込み関数
+
+	LoadDivGraph("./images/樽.png", 4, 4, 1, 32, 32, ta_ru);
+	heart1 = LoadGraph("./images/h.png");
+	heart2 = LoadGraph("./images/h.png");
+	heart3 = LoadGraph("./images/h.png");
+	LoadDivGraph("./images/mario.png", 2, 2, 1, 32, 32, player);
+	enemy = LoadGraph("./images/gorila.png");
+	joo = LoadGraph("./images/hime.png");
+	LoadDivGraph("./images/hasi.png", 2, 2, 1, 32, 32, hasi);
+}
+
+
+void Hyoji(void) {	//表示関数
+	for (int y = 0; y < 20; y++) {
+		for (int x = 0; x < 25; x++) {
+			if (map[y][x] != 2) {
+				DrawGraph(x * 32, y * 32, hasi[map[y][x]], FALSE);   //map
+			}
+		}
+	}
+	DrawGraph(px * 32, py * 32, player[p_dir], FALSE);
+	DrawGraph(ex * 32, ey * 32, enemy, FALSE);
+	DrawGraph(joox * 32, jooy * 32, joo, FALSE);
+	DrawGraph(tx * 32, ty * 32, ta_ru[ta_ru_index], FALSE);
+
+	ta_ru_index = (ta_ru_index + 1) % 4;
+	if (hp == 3) {
+		DrawGraph(hx1 * 32, hy1 * 32, heart1, FALSE);
+		DrawGraph(hx2 * 32, hy2 * 32, heart2, FALSE);
+		DrawGraph(hx3 * 32, hy3 * 32, heart3, FALSE);
+	}
+	else if (hp == 2) {
+		DrawGraph(hx1 * 32, hy1 * 32, heart1, FALSE);
+		DrawGraph(hx2 * 32, hy2 * 32, heart2, FALSE);
+	}
+	else {
+		DrawGraph(hx1 * 32, hy1 * 32, heart1, FALSE);
+	}
+
+
+	WaitTimer(80);
+}
+
+void atari() {
+	if (tx == px && ty == py) {
+		hp--;
+	}
+	if (hp == 0) {
+		status = 1;
+	}
+}
+
+void jump(void) {
+	if (CheckHitKey(KEY_INPUT_UP)) {
+		py -= 2;
+		//taiku_y = py;
+		//jflag = TRUE;
+	}
+}
+
+void Player(void) {	//プレイヤーの動き関数  //変えるｋｆｊヵｊｄｆｊうぇｈ
+	int tmpx = px, tmpy = py;
+	//左右に動く
+	if (CheckHitKey(KEY_INPUT_LEFT)) {
+
+		p_dir = 1;
+		if (px == 0) {
+			px = 24;
+		}
+		else {
+			px--;
+		}
+	}else if(CheckHitKey(KEY_INPUT_RIGHT)) {
+
+		p_dir = 0;
+		if (px == 24) {
+			px = 0;
+		}
+		else {
+			px++;
+		}
+	}
+
+	//ジャンプ処理
+	//jump();
+
+	if (map[py + 1][px] == 2) {
+		//jump();
+		py++;
+	}
+	else if (map[py + 1][px] == 0) {
+		jump();
+	}
+	/*
+	else if (py != 18) {
+		py++;
+	}
+	*/
+	/*if (map[py][px] == 1) {   //map
+		px = tmpx;
+		py = tmpy;
+	}
+	*/
+
+	//上端を設定
+	if (py < 0) {
+		py = 0;
+	}
+}
+
+void Taru(void) {
+	int tmpx = tx, tmpy = ty;
+	tx += t_speed;
+	if (t_speed > 0) {
+		if (ta_ru[3] == 0) ta_ru[3] = 1;
+		else if (ta_ru[3] == 1) ta_ru[3] = 2;
+		else if (ta_ru[3] == 2) ta_ru[3] = 3;
+		else if (ta_ru[3] == 3) ta_ru[3] = 0;
+	}
+	else if (t_speed < 0) {
+		if (ta_ru[3] == 0) ta_ru[3] = 3;
+		else if (ta_ru[3] == 3) ta_ru[3] = 2;
+		else if (ta_ru[3] == 2) ta_ru[3] = 1;
+		else if (ta_ru[3] == 1) ta_ru[3] = 0;
+	}
+	if (tx <= 1 || tx >= 23) {
+		t_speed *= -1;
+	}
+	if (map[ty][tx] == 1) {   //map
+		tx = tmpx;
+		ty = tmpy;
+	}
+}
+
+int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
+	SetGraphMode(800, 640, 32);
+	ChangeWindowMode(TRUE);
+	DxLib_Init();
+	SetDrawScreen(DX_SCREEN_BACK);
+	Gazo();
+	while (status == 0 && ProcessMessage() == 0 && ScreenFlip() == 0 && ClearDrawScreen() == 0) {
+		Player();
+		Hyoji();
+		Taru();
+		atari();
+		/*
+		if (jflag == TRUE) {
+			time++;
+			py = py + 2;
+			if (time > 1) {
+				jflag = FALSE;
+				time = 0;
+			}
+		}
+		*/
+	}
+
+	while (status == 1 && ProcessMessage() == 0 && ScreenFlip() == 0 && ClearDrawScreen() == 0)
+		DrawString(280, 230, "GAME OVER", GetColor(255, 0, 0));
+	while (status == 2 && ProcessMessage() == 0 && ScreenFlip() == 0 && ClearDrawScreen() == 0)
+		DrawString(280, 230, "GAME CLEAR", GetColor(255, 255, 255));
+
+	DxLib_End();
+	return 0;
+}
