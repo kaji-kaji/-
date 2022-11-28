@@ -1,0 +1,10 @@
+for(int i = 0; i < n; i++){
+      		for(int j = 1; i >= j - n; j++){
+				if(i >= -j + n){
+					System.out.print(s);
+				}else{
+					System.out.print("　");
+				}
+			}
+			System.out.println();
+		}
