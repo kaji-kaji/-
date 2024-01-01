@@ -1,4 +1,4 @@
-for(int i = 0; i < n; i++){
+for(int i = 0; i < n; i++){　　　　　　　　//階段ピラミッド
       	for(int j = 1; i >= j - n; j++){
 		if(i >= -j + n){
 			System.out.print(s);
@@ -9,7 +9,7 @@ for(int i = 0; i < n; i++){
 	System.out.println();
 }
 
-for(int i = 0; i < n; i++){                  //自分流ピラミッド
+for(int i = 0; i < n; i++){                  //自分流階段ピラミッド
         for(int j = 0; j < n + i; j++){
 		if(n-i <= j + 1 ){
 			System.out.print(s);
@@ -18,4 +18,37 @@ for(int i = 0; i < n; i++){                  //自分流ピラミッド
 		}
 	}
 	System.out.println();
+}
+
+for (int i = 1; i <= n; i++) {　　　　　　　//階段ピラミッド
+            // スペースを出力
+	for (int j = 0; j < n - i; j++) {
+        	System.out.print(" ");
+        }
+            
+            // * を出力
+        for (int k = 0; k < i; k++) {
+                System.out.print("*");
+        }
+            
+            // 改行
+        System.out.println();
+}
+
+
+int space = n-1;    //ピラミッド
+for (int i = 1; i <= n; i++) {
+// スペースを出力
+        for (int j = 0; j < space; j++) {
+        	System.out.print(" ");
+        }
+            
+        // * を出力
+        for (int k = 0; k < 2 * i - 1; k++) {
+        	System.out.print("*");
+        }
+            
+        // 次の行への準備
+        space--;
+        System.out.println();
 }
